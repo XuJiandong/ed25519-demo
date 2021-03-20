@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include "sha512.h"
 
 #include "crypto_verify_32.h"
 
@@ -44,13 +45,9 @@ int crypto_verify_32(const unsigned char *x,const unsigned char *y)
 
 
 int crypto_hash_sha512(unsigned char *out,const unsigned char *in,unsigned long long inlen) {
-//  SHA512(in,inlen,out);
+  sha512(in, inlen, out);
   return 0;
 }
 
 void randombytes(unsigned char * r,unsigned long long l) {
-  FILE *fp = fopen("/dev/urandom", "r");  //TODO Remove hard-coded use of /dev/urandom.
-  size_t bytes_read = fread(r, 1, l, fp);
-  assert(bytes_read == l);
-  fclose(fp);
 }
